@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{% if no_ticker %}
+	{{ no_ticker }}
+{% endif %}
+
+
+{% if apidata %}
+	{% if apidata == 'NA' %}
+		There was a problem with api,
+		please try again...
+	{% else %}
+		<h1>{{ apidata.companyName }}</h1><br/>
+		Price: {{ apidata.latestPrice }}<br/>
+		Previous Close: {{ apidata.previousClose }}<br/>
+		Market Cap: {{ apidata.marketCap }}<br/>
+		Year To Date Change: {{ apidata.ytdChange }}<br/>
+		52 wk High: {{ apidata.week52High }}<br/>
+		52 wk Low: {{ apidata.week52Low }}<br/>
+
+<!--
+		{% for key, value in apidata.items %}
+			{{ key }}: {{ value }} <br/>
+		{% endfor %}
+-->
+	{% endif %}
+{% endif %}
+
+
+{% endblock %}
