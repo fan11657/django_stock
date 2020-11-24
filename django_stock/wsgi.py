@@ -1,5 +1,5 @@
 """
-WSGI config for project1dir project.
+WSGI config for django_stock project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project1dir.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_stock.settings')
 
 application = get_wsgi_application()
