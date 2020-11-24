@@ -26,7 +26,7 @@ def home(request):
 
 		return render(request, 'home.html', {'apidata': apidata})
 	else:
-		return render(request, 'home.html', {'no_ticker': 'Please Enter a Ticker Symbol Above...'})
+		return render(request, 'home.html', {'no_ticker': 'Please Enter A Ticker Symbol Into The Search Box Above...'})
 
 def about(request):
 	return render(request, 'about.html', {})
@@ -48,13 +48,14 @@ def add_stock(request):
 			try:
 				api_request = requests.get(f'https://cloud.iexapis.com/stable/stock/{ticker}/quote?token=' + token)
 				data = json.loads(api_request.content)
-				apidata.append(data)
-				print('FROM HOME: Get API successfully')
+				print('FROM ADD_STOCK: Get API successfully')
 			except Exception as e:
-				apidata = 'NA'
-				print('FROM HOME:', e)
+				data = {'companyName': ticker}
+				print('FROM ADD_STOCK:', e)
+			data['id'] = ticker.id
+			apidata.append(data)
 
-		return render(request, 'add_stock.html', {'tickers': tickers, 'apidata': apidata})
+		return render(request, 'add_stock.html', {'apidata': apidata})
 
 
 def del_stock(request, ticker_id):

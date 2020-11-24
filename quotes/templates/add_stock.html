@@ -23,27 +23,20 @@
         </tr>
       </thead>
       <tbody>
-        {% if tickers %}
-            {% for data in apidata%}
-                <tr>
-                  <th scope="row">{{ data.companyName }}</th>
-                  <td>${{ data.latestPrice }}</td>
-                  <td>${{ data.previousClose }}</td>
-                  <td>${{ data.marketCap }}</td>
-                  <td>{{ data.ytdChange }}%</td>
-                  <td>${{ data.week52High }}</td>
-                  <td>${{ data.week52Low }}</td>
-                  <td><a href="/">Delete Stock</a></td>
-                </tr>
-            {% endfor %}
-        {% endif %}
+          {% for data in apidata %}
+              <tr>
+                <th scope="row">{{ data.companyName }}</th>
+                <td>${{ data.latestPrice|floatformat:3|default:"NA" }}</td>
+                <td>${{ data.previousClose|floatformat:3|default:"NA" }}</td>
+                <td>${{ data.marketCap|default:"NA" }}</td>
+                <td>{{ data.ytdChange|floatformat:3|default:"NA" }}%</td>
+                <td>${{ data.week52High|floatformat:3|default:"NA" }}</td>
+                <td>${{ data.week52Low|floatformat:3|default:"NA" }}</td>
+                <td><a href="{% url 'delete' data.id %}">Delete Stock</a></td>
+
+              </tr>
+          {% endfor %}
       </tbody>
     </table>
-
-
-    {% for ticker in tickers%}
-        {{ ticker }} - <a href="{% url 'delete' ticker.id %}">Delete Stock</a><br/>
-    {% endfor %}
-
 {% endblock %}
 

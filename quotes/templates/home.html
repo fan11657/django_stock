@@ -4,7 +4,7 @@
 
 
 {% if no_ticker %}
-	{{ no_ticker }}
+	<h2>{{ no_ticker }}</h2>
 {% endif %}
 
 
@@ -21,11 +21,12 @@
 		52 wk High: {{ apidata.week52High }}<br/>
 		52 wk Low: {{ apidata.week52Low }}<br/>
 
-<!--
-		{% for key, value in apidata.items %}
-			{{ key }}: {{ value }} <br/>
-		{% endfor %}
--->
+		{% comment %}
+			{% for key, value in apidata.items %}
+				{{ key }}: {{ value }} <br/>
+			{% endfor %}
+		{% endcomment %}
+	
 	{% endif %}
 {% endif %}
 
